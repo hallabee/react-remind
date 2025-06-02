@@ -16,19 +16,24 @@ const Todo = (props) => {
     };
     //turnOnReadOnly
     const turnOnReadOnly = (e) => {
-        if(e.key === "Enter"){
+        // if(e.key === "Enter"){
+        //     setReadOnly(true);
+        // }
+        if(e.key === 'Enter' && readOnly === false) {
             setReadOnly(true);
+            editItem(item);
         }
     };
     const editItem = props.editItem;
     const editEventHandler = (e) => {
-        item.title = e.target.value;
-        editItem();
+        // item.title = e.target.value;
+        // editItem();
+        setItem({...item, title: e.target.value});
     };
     const checkboxEventHandler = (e) => {
-        item.done = e.target.checked;
-        editItem();
-    }
+        setItem({...item, done: e.target.checked});
+        editItem(item);
+    };
     return(
         <ListItem>
             <Checkbox checked={item.done} onChange={checkboxEventHandler}/>
